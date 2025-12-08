@@ -1,4 +1,5 @@
 'use server';
+import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
 import { FieldValues } from 'react-hook-form';
 
@@ -44,5 +45,16 @@ export const loginUser = async (userData: FieldValues) => {
     return result;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const currentUser = async () => {
+  const token = (await cookies()).get('token')?.value;
+  let decodeData = null;
+  if (token) {
+    decodeData = await jwtDecode(token);
+    return decodeData;
+  } else {
+    return null;
   }
 };
