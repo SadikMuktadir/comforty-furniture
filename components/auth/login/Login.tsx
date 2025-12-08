@@ -11,20 +11,20 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { registrationSchema } from './RegistrationValidation';
-import { registerUser } from '@/services/AuthServices';
+import { loginUser } from '@/services/AuthServices';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginValidationSchema } from './LoginValidationSchema';
 import Link from 'next/link';
 
-const RegistrationForm = () => {
+const LoginForm = () => {
   const form = useForm({
-    resolver: zodResolver(registrationSchema),
+    resolver: zodResolver(loginValidationSchema),
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      const res = await registerUser(data);
+      const res = await loginUser(data);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -36,29 +36,12 @@ const RegistrationForm = () => {
       <Card className='w-full max-w-md shadow-xl'>
         <CardHeader>
           <CardTitle className='text-center text-2xl font-semibold'>
-            Create Account
+            Login Account
           </CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-              <FormField
-                control={form.control}
-                name='name'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder='Type your name'
-                        {...field}
-                        value={field.value || ''}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name='email'
@@ -109,4 +92,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;

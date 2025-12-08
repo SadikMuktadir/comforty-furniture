@@ -1,15 +1,9 @@
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import LoginForm from '@/components/auth/login/Login';
 
 const Login = () => {
   return (
     <div>
-      <nav>
-        <Button>
-          <Link href='/'>Home</Link>
-        </Button>
-      </nav>
-      <div>Login</div>
+      <LoginForm></LoginForm>
     </div>
   );
 };
