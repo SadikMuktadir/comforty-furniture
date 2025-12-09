@@ -12,9 +12,7 @@ export const registerUser = async (userData: FieldValues) => {
       },
       body: JSON.stringify(userData),
     });
-    console.log(res);
     const result = await res.json();
-    console.log(result);
     const cookiesData = await cookies();
 
     if (result?.success) {
@@ -57,4 +55,8 @@ export const currentUser = async () => {
   } else {
     return null;
   }
+};
+
+export const logOut = async () => {
+  (await cookies()).delete('token');
 };
