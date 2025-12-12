@@ -14,10 +14,12 @@ import { Avatar, AvatarImage } from '../ui/avatar';
 import { logOut } from '@/services/AuthServices';
 
 const Navbar = () => {
-  const { user } = useUser();
+  const { user, setLoading } = useUser();
+  console.log(user);
 
   const handleLogout = () => {
     logOut();
+    setLoading(true);
   };
 
   return (
@@ -34,7 +36,7 @@ const Navbar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
-                  <AvatarImage src='https://github.com/shadcn.png' />
+                  <AvatarImage src={user?.image} />
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>

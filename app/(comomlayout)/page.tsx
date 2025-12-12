@@ -1,10 +1,13 @@
 'use client';
-import { useUser } from '@/context/UserContext';
+
+import ImageUploder from '@/reusable/imageuploder';
 
 const Home = () => {
-  const user = useUser();
-  console.log(user);
-  return <div>Home</div>;
+  return (
+    <div>
+      <ImageUploder></ImageUploder>
+    </div>
+  );
 };
 
 export default Home;
