@@ -29,7 +29,7 @@ const LeftNavbar = () => {
             <span className='text-[20px] group-hover:text-white'>Home</span>
           </div>
         </Link>
-        <Link href='/my-profile' className='block'>
+        <Link href='/admin/my-profile' className='block'>
           <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
             <UserRoundPen className='mr-3 group-hover:text-white' />
             <span className='text-[20px] group-hover:text-white'>

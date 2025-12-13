@@ -16,8 +16,12 @@ import { loginUser } from '@/services/AuthServices';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginValidationSchema } from './LoginValidationSchema';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const LoginForm = () => {
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirectPath');
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginValidationSchema),
   });
@@ -26,6 +30,9 @@ const LoginForm = () => {
     try {
       const res = await loginUser(data);
       console.log(res);
+      if (redirect) {
+        router.push(redirect);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -38,7 +38,7 @@ const BottomNavbar = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href='/my-profile'>Dashboard</Link>
+              <Link href='/admin/my-profile'>Dashboard</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
