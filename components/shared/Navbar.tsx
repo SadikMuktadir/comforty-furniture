@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { useUser } from '@/context/UserContext';
+import logoImage from '../../public/image/comforty-logo.png';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,8 +11,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarImage } from '../ui/avatar';
 import { logOut } from '@/services/AuthServices';
+import Image from 'next/image';
+import { Input } from '../ui/input';
+import { Search } from 'lucide-react';
+import { Avatar, AvatarImage } from '../ui/avatar';
 
 const Navbar = () => {
   const { user, setLoading } = useUser();
@@ -25,18 +29,23 @@ const Navbar = () => {
   return (
     <div className='flex justify-between'>
       <div>
-        <p>Logo</p>
+        <Image src={logoImage} alt='logo-image' height={40} width={150}></Image>
       </div>
-      <div>
-        <p>Search Bar</p>
+      <div className='relative w-1/2'>
+        <Search className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
+        <Input type='search' placeholder='Search here ...' className='pl-10' />
       </div>
+
       <div>
         {user ? (
           <>
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              <DropdownMenuTrigger className='cursor-pointer'>
                 <Avatar>
-                  <AvatarImage src={user?.image} />
+                  <AvatarImage
+                    src='https://github.com/shadcn.png'
+                    alt='@shadcn'
+                  />
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>

@@ -1,11 +1,9 @@
-'use client';
-
-import ImageUploder from '@/reusable/imageuploder';
+import Banner from '@/components/home/Banner';
 
 const Home = () => {
   return (
     <div>
-      <ImageUploder></ImageUploder>
+      <Banner></Banner>
     </div>
   );
 };
