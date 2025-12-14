@@ -1,5 +1,11 @@
+import CreateFurniture from '@/components/product/CreateProduct';
+
 const createFurniture = () => {
-  return <div>createFurniture</div>;
+  return (
+    <div>
+      <CreateFurniture></CreateFurniture>
+    </div>
+  );
 };
 
 export default createFurniture;

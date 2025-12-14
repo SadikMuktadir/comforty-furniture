@@ -23,7 +23,6 @@ const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user, setLoading } = useUser();
-  console.log(user);
 
   const handleLogout = () => {
     logOut();
