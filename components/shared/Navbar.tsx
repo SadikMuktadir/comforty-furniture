@@ -48,18 +48,14 @@ const Navbar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger className='cursor-pointer'>
                 <Avatar>
-                  <AvatarImage
-                    src='https://github.com/shadcn.png'
-                    alt='@shadcn'
-                  />
+                  <AvatarImage src={user?.image} alt='' />
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+                <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuItem>{user?.email}</DropdownMenuItem>
+                <DropdownMenuItem>{user?.role}</DropdownMenuItem>
                 <DropdownMenuItem>
                   <nav>
                     <Button onClick={handleLogout}>Logout</Button>

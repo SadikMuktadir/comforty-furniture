@@ -1,21 +1,12 @@
 import { z } from 'zod';
 
 export const furnitureValidationSchema = z.object({
-  image: z.any().refine((file) => file instanceof File, {
-    message: 'Image is required',
-  }),
-  name: z
-    .string()
-    .min(2, { message: 'Name must be at least 2 characters' })
-    .max(100, { message: 'Name must be less than 100 characters' }),
-
-  description: z
-    .string()
-    .min(1, { message: 'Description must be at least 1 characters' })
-    .max(1000, { message: 'Description must be less than 1000 characters' }),
-
-  price: z
-    .number()
-    .min(0, { message: 'Price must be a positive number' })
-    .optional(),
+  image: z
+    .instanceof(File, { message: 'Image is required' })
+    .refine((file) => file.size > 0, 'Image is required'),
+  name: z.string().min(1, 'Furniture name is required'),
+  description: z.string().min(1, 'Description is required'),
+  price: z.number().positive('Price must be greater than 0'),
 });
+
+export type FurnitureFormData = z.infer<typeof furnitureValidationSchema>;

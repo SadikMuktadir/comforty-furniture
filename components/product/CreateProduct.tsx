@@ -14,16 +14,24 @@ import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { furnitureValidationSchema } from './furnitureValidationSchema';
+import {
+  FurnitureFormData,
+  furnitureValidationSchema,
+} from './furnitureValidationSchema';
 import { createFurnitureData } from '@/services/product';
-import { IFurnitureForm } from '@/types/product';
 
 const CreateFurniture = () => {
   const form = useForm({
     resolver: zodResolver(furnitureValidationSchema),
+    defaultValues: {
+      name: '',
+      description: '',
+      price: undefined,
+      image: undefined as unknown as File,
+    },
   });
 
-  const onSubmit = async (data: IFurnitureForm) => {
+  const onSubmit = async (data: FurnitureFormData) => {
     const formData = new FormData();
 
     formData.append('file', data.image);
