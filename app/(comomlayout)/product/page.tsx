@@ -4,7 +4,6 @@
 import { useEffect, useState } from 'react';
 import { getAllFurniture } from '@/services/product';
 interface IFurniture {
-  _id?: string;
   name: string;
   description: string;
   price: number;
