@@ -3,7 +3,11 @@
 
 import { useEffect, useState } from 'react';
 import { getAllFurniture } from '@/services/product';
+import { ShoppingCart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
 interface IFurniture {
+  _id: string;
   name: string;
   description: string;
   price: number;
@@ -16,30 +20,47 @@ const Furnitures = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      const data = await getAllFurniture();
-      setFurniture(data); // data should be an array
-      setLoading(false);
+      try {
+        setLoading(true);
+        const data = await getAllFurniture();
+        setFurniture(data);
+      } catch (error) {
+        console.error('Failed to load furniture', error);
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading furniture...</p>;
-  if (furniture.length === 0) return <p>No furniture found.</p>;
+  if (loading) return <p className='text-center'>Loading furniture...</p>;
+  if (furniture.length === 0)
+    return <p className='text-center'>No furniture found.</p>;
 
   return (
-    <div
-      className='furniture-list'
-      style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}
-    >
-      {furniture.map((item, index) => (
-        <div key={index}>
-          <div>
-            <img src={item?.image} alt='image'></img>
+    <div className='my-[100px] grid grid-cols-3 gap-8'>
+      {furniture.map((item) => (
+        <div
+          key={item._id}
+          className='flex h-[500px] flex-col justify-between rounded-lg border p-4 shadow-sm'
+        >
+          <div className='mb-4 flex items-center justify-center overflow-hidden'>
+            <img src={item.image} alt={item.name} className='h-full w-full' />
           </div>
-          <h2>{item?.name}</h2>
-          <p>{item?.description}</p>
-          <p>Price: ${item?.price}</p>
+
+          <div className='flex items-end justify-between'>
+            <div>
+              <p className='mb-2 line-clamp-2 text-[16px] text-[#029fae]'>
+                {item.description}
+              </p>
+              <p className='text-[18px] font-semibold'>${item.price}</p>
+            </div>
+
+            <Button className='cursor-pointer bg-[#029fae] text-white'>
+              <ShoppingCart />
+            </Button>
+          </div>
         </div>
       ))}
     </div>
