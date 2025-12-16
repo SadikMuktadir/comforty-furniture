@@ -3,7 +3,13 @@
 
 import { useEffect, useState } from 'react';
 import { getAllFurniture } from '@/services/product';
-import { IFurniture } from '@/types/product';
+interface IFurniture {
+  _id?: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
 
 const Furnitures = () => {
   const [furniture, setFurniture] = useState<IFurniture[]>([]);
