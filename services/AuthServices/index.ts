@@ -32,12 +32,15 @@ export const loginUser = async (userData: FieldValues) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(userData),
+      cache: 'no-store',
     });
 
     const result = await res.json();
     const cookiesData = await cookies();
     if (result?.success) {
-      cookiesData.set('token', result?.token);
+      cookiesData.set('token', result?.token, {
+        httpOnly: true,
+      });
     }
 
     return result;
