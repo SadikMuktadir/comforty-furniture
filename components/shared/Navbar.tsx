@@ -14,7 +14,7 @@ import {
 import { logOut } from '@/services/AuthServices';
 import Image from 'next/image';
 import { Input } from '../ui/input';
-import { Search } from 'lucide-react';
+import { Search, ShoppingBag } from 'lucide-react';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import { usePathname, useRouter } from 'next/navigation';
 import { protectedRoutes } from '@/constants';
@@ -45,24 +45,33 @@ const Navbar = () => {
       <div>
         {user ? (
           <>
-            <DropdownMenu>
-              <DropdownMenuTrigger className='cursor-pointer'>
-                <Avatar>
-                  <AvatarImage src={user?.image} alt='' />
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>{user?.email}</DropdownMenuItem>
-                <DropdownMenuItem>{user?.role}</DropdownMenuItem>
-                <DropdownMenuItem>
-                  <nav>
-                    <Button onClick={handleLogout}>Logout</Button>
-                  </nav>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className='flex gap-10'>
+              <div className='my-auto cursor-pointer rounded-full p-2'>
+                <Link href='/admin/my-cart'>
+                  <ShoppingBag />
+                </Link>
+              </div>
+              <div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className='cursor-pointer'>
+                    <Avatar>
+                      <AvatarImage src={user?.image} alt='' />
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>{user?.email}</DropdownMenuItem>
+                    <DropdownMenuItem>{user?.role}</DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <nav>
+                        <Button onClick={handleLogout}>Logout</Button>
+                      </nav>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </div>
           </>
         ) : (
           <>

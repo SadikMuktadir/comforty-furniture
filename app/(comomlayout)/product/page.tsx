@@ -5,8 +5,10 @@ import { useEffect, useState } from 'react';
 import { getAllFurniture } from '@/services/product';
 import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAppDispatch } from '@/redux/hook';
+import { addProduct } from '@/redux/features/cartSlice';
 
-interface IFurniture {
+export interface IFurniture {
   _id: string;
   name: string;
   description: string;
@@ -15,8 +17,13 @@ interface IFurniture {
 }
 
 const Furnitures = () => {
+  const dispatch = useAppDispatch();
   const [furniture, setFurniture] = useState<IFurniture[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const handleAddProduct = (item: IFurniture) => {
+    dispatch(addProduct(item));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +64,10 @@ const Furnitures = () => {
               <p className='text-[18px] font-semibold'>${item.price}</p>
             </div>
 
-            <Button className='cursor-pointer bg-[#029fae] text-white'>
+            <Button
+              onClick={() => handleAddProduct(item)}
+              className='cursor-pointer bg-[#029fae] text-white'
+            >
               <ShoppingCart />
             </Button>
           </div>

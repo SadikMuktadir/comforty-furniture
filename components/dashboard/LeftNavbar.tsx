@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import imageLogo from '../../public/image/dashboard-logo.png';
 import Link from 'next/link';
-import { House, SquarePlus, UserRoundPen, UsersRound } from 'lucide-react';
+import {
+  House,
+  ShoppingBag,
+  SquarePlus,
+  UserRoundPen,
+  UsersRound,
+} from 'lucide-react';
 
 const LeftNavbar = () => {
   return (
@@ -35,6 +41,12 @@ const LeftNavbar = () => {
             <span className='text-[20px] group-hover:text-white'>
               My Profile
             </span>
+          </div>
+        </Link>
+        <Link href='/admin/my-cart' className='block'>
+          <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+            <ShoppingBag className='mr-3 group-hover:text-white' />
+            <span className='text-[20px] group-hover:text-white'>My Cart</span>
           </div>
         </Link>
         <Link href='/admin/all-user' className='block'>
