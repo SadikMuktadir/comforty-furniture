@@ -3,10 +3,11 @@ import bannerimg from '../../public/image/banner-image.png';
 import bannerCirlce from '../../public/image/banner-circle.png';
 import Image from 'next/image';
 import { MoveRight } from 'lucide-react';
+import Link from 'next/link';
 
 const Banner = () => {
   return (
-    <div className='flex justify-between bg-[#f0f2f3] p-[100px]'>
+    <div className='flex justify-between bg-[#f0f2f3] p-[130px]'>
       <div className='w-[50%] my-auto'>
         <div>
           <p className='text-[14px] text-[#272343]'>WELCOME TO CHAIRY</p>
@@ -17,12 +18,14 @@ const Banner = () => {
           </p>
         </div>
         <div>
-          <Button className='bg-[#029fae]'>
-            Shop Now
-            <span className='ml-1'>
-              <MoveRight />
-            </span>
-          </Button>
+          <Link href='/shop'>
+            <Button className='bg-[#029fae] cursor-pointer'>
+              Shop Now
+              <span className='ml-1'>
+                <MoveRight />
+              </span>
+            </Button>
+          </Link>
         </div>
       </div>
       <div className='relative w-[475px] h-[600px]'>

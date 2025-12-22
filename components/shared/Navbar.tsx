@@ -47,9 +47,15 @@ const Navbar = () => {
           <>
             <div className='flex gap-10'>
               <div className='my-auto cursor-pointer rounded-full p-2'>
-                <Link href='/admin/my-cart'>
-                  <ShoppingBag />
-                </Link>
+                {user?.role === 'admin' ? (
+                  <Link href='/admin/my-cart'>
+                    <ShoppingBag />
+                  </Link>
+                ) : (
+                  <Link href='/user/my-cart'>
+                    <ShoppingBag />
+                  </Link>
+                )}
               </div>
               <div>
                 <DropdownMenu>
