@@ -14,7 +14,7 @@ const Banner = () => {
         </div>
         <div className='mb-[30px]'>
           <p className='text-[60px] text-[#272343] font-bold'>
-            Best Furniture Collection for your interior.
+            Best Furniture Collection For Your Interior.
           </p>
         </div>
         <div>
