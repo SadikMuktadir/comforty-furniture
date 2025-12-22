@@ -19,24 +19,21 @@ const BottomNavbar = () => {
               <Link href='/'>Home</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link href='/shop'>Shop</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+          <NavigationMenuItem></NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
               <Link href='/product'>Product</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
+
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href='/pages'>Pages</Link>
+              <Link href='/about'>About Us</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href='/about'>About</Link>
+              <Link href='/contactus'>Contact Us</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
