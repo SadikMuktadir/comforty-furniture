@@ -1,4 +1,5 @@
 import BottomNavbar from '@/components/shared/BottomNavbar';
+import Footer from '@/components/shared/Footer';
 import Navbar from '@/components/shared/Navbar';
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
@@ -11,6 +12,9 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
         <BottomNavbar></BottomNavbar>
       </div>
       {children}
+      <div>
+        <Footer></Footer>
+      </div>
     </div>
   );
 };
