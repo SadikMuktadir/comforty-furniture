@@ -7,6 +7,7 @@ import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAppDispatch } from '@/redux/hook';
 import { addProduct } from '@/redux/features/cartSlice';
+import { Spinner } from '@/components/ui/spinner';
 
 export interface IFurniture {
   _id: string;
@@ -41,7 +42,12 @@ const Furnitures = () => {
     fetchData();
   }, []);
 
-  if (loading) return <p className='text-center'>Loading furniture...</p>;
+  if (loading)
+    return (
+      <div className='flex justify-center items-center h-40'>
+        <Spinner className='text-[#029fae]' />
+      </div>
+    );
   if (furniture.length === 0)
     return <p className='text-center'>No furniture found.</p>;
 

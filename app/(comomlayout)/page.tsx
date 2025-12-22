@@ -1,6 +1,8 @@
 import Banner from '@/components/home/Banner';
 import BottomBanner from '@/components/home/BottomBanner';
+import FeatureProducts from '@/components/home/FeatureProducts';
 import MaqueeCom from '@/components/home/MaqueeCom';
+import RecentlyAdded from '@/components/home/RecentlyAdded';
 
 const Home = () => {
   return (
@@ -13,6 +15,12 @@ const Home = () => {
       </div>
       <div className='my-[50px]'>
         <MaqueeCom></MaqueeCom>
+      </div>
+      <div className='m-[50px]'>
+        <FeatureProducts></FeatureProducts>
+      </div>
+      <div className='m-[50px]'>
+        <RecentlyAdded></RecentlyAdded>
       </div>
     </div>
   );
