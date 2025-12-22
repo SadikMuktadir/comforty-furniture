@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import {
   NavigationMenu,
@@ -5,8 +6,10 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from '../ui/navigation-menu';
+import { useUser } from '@/context/UserContext';
 
 const BottomNavbar = () => {
+  const { user } = useUser();
   return (
     <div className='flex justify-center'>
       <NavigationMenu>
@@ -38,7 +41,14 @@ const BottomNavbar = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href='/admin/my-profile'>Dashboard</Link>
+              <div>
+                {user?.role === 'admin' && (
+                  <Link href='/admin/my-profile'>Dashboard</Link>
+                )}
+                {user?.role === 'user' && (
+                  <Link href='/user/my-profile'>Dashboard</Link>
+                )}
+              </div>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

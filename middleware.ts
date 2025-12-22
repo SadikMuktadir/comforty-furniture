@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { currentUser } from './services/AuthServices';
 
-const authRoutes = ['/login', 'register'];
+const authRoutes = ['/login', '/register'];
 
 export const middleware = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;

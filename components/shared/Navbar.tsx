@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between bg-[#f0f2f3] px-10 py-3'>
       <div>
         <Image src={logoImage} alt='logo-image' height={40} width={150}></Image>
       </div>
@@ -65,7 +65,9 @@ const Navbar = () => {
                     <DropdownMenuItem>{user?.role}</DropdownMenuItem>
                     <DropdownMenuItem>
                       <nav>
-                        <Button onClick={handleLogout}>Logout</Button>
+                        <Button className='bg-[#029fae]' onClick={handleLogout}>
+                          Logout
+                        </Button>
                       </nav>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
@@ -77,12 +79,12 @@ const Navbar = () => {
           <>
             <div className='flex space-x-5'>
               <nav>
-                <Button>
+                <Button className='bg-[#029fae]'>
                   <Link href='/register'>Register</Link>
                 </Button>
               </nav>
               <nav>
-                <Button>
+                <Button className='bg-[#029fae]'>
                   <Link href='/login'>Login</Link>
                 </Button>
               </nav>

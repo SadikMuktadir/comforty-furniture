@@ -34,12 +34,14 @@ export const loginUser = async (userData: FieldValues) => {
       body: JSON.stringify(userData),
       cache: 'no-store',
     });
-
     const result = await res.json();
     const cookiesData = await cookies();
     if (result?.success) {
       cookiesData.set('token', result?.token, {
         httpOnly: true,
+        sameSite: 'strict',
+        path: '/',
+        maxAge: 60 * 60 * 24 * 30,
       });
     }
 

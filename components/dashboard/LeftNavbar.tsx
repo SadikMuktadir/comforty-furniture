@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import imageLogo from '../../public/image/dashboard-logo.png';
 import Link from 'next/link';
@@ -8,8 +9,14 @@ import {
   UserRoundPen,
   UsersRound,
 } from 'lucide-react';
+import { useUser } from '@/context/UserContext';
 
 const LeftNavbar = () => {
+  const { user } = useUser();
+
+  const myProfile =
+    user?.role === 'admin' ? '/admin/my-profile' : '/user/my-profile';
+  const myCart = user?.role === 'admin' ? '/admin/my-cart' : '/user/my-cart';
   return (
     <div>
       <div className='flex justify-center p-5'>
@@ -35,34 +42,44 @@ const LeftNavbar = () => {
             <span className='text-[20px] group-hover:text-white'>Home</span>
           </div>
         </Link>
-        <Link href='/admin/my-profile' className='block'>
-          <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-            <UserRoundPen className='mr-3 group-hover:text-white' />
-            <span className='text-[20px] group-hover:text-white'>
-              My Profile
-            </span>
+        <div>
+          <Link href={myProfile} className='block'>
+            <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+              <UserRoundPen className='mr-3 group-hover:text-white' />
+              <span className='text-[20px] group-hover:text-white'>
+                My Profile
+              </span>
+            </div>
+          </Link>
+          <Link href={myCart} className='block'>
+            <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+              <ShoppingBag className='mr-3 group-hover:text-white' />
+              <span className='text-[20px] group-hover:text-white'>
+                My Cart
+              </span>
+            </div>
+          </Link>
+        </div>
+        {user?.role === 'admin' && (
+          <div>
+            <Link href='/admin/all-user' className='block'>
+              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+                <UsersRound className='mr-3 group-hover:text-white' />
+                <span className='text-[20px] group-hover:text-white'>
+                  All User
+                </span>
+              </div>
+            </Link>
+            <Link href='/admin/create-furniture' className='block'>
+              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+                <SquarePlus className='mr-3 group-hover:text-white' />
+                <span className='text-[20px] group-hover:text-white'>
+                  Create Furniture
+                </span>
+              </div>
+            </Link>
           </div>
-        </Link>
-        <Link href='/admin/my-cart' className='block'>
-          <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-            <ShoppingBag className='mr-3 group-hover:text-white' />
-            <span className='text-[20px] group-hover:text-white'>My Cart</span>
-          </div>
-        </Link>
-        <Link href='/admin/all-user' className='block'>
-          <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-            <UsersRound className='mr-3 group-hover:text-white' />
-            <span className='text-[20px] group-hover:text-white'>All User</span>
-          </div>
-        </Link>
-        <Link href='/admin/create-furniture' className='block'>
-          <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-            <SquarePlus className='mr-3 group-hover:text-white' />
-            <span className='text-[20px] group-hover:text-white'>
-              Create Furniture
-            </span>
-          </div>
-        </Link>
+        )}
       </div>
     </div>
   );

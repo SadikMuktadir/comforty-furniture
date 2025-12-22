@@ -31,7 +31,7 @@ const LoginForm = () => {
       const res = await loginUser(data);
       console.log(res);
       if (redirect) {
-        router.push(redirect);
+        router.push('/');
       }
     } catch (error) {
       console.log(error);
@@ -83,11 +83,11 @@ const LoginForm = () => {
                   </FormItem>
                 )}
               />
-              <Button className='cursor-pointer' type='submit'>
+              <Button className='cursor-pointer bg-[#029fae]' type='submit'>
                 Submit
               </Button>
               <nav>
-                <Button>
+                <Button className='bg-[#029fae]'>
                   <Link href='/'>Home</Link>
                 </Button>
               </nav>

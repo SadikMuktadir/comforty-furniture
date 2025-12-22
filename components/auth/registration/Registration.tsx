@@ -15,8 +15,10 @@ import { useForm } from 'react-hook-form';
 import { RegisterFormData, registrationSchema } from './RegistrationValidation';
 import { registerUser } from '@/services/AuthServices';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const RegistrationForm = () => {
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
@@ -34,9 +36,15 @@ const RegistrationForm = () => {
     formData.append('name', data.name);
     formData.append('email', data.email);
     formData.append('password', data.password);
-
-    const res = await registerUser(formData);
-    console.log(res);
+    try {
+      const res = await registerUser(formData);
+      console.log(res);
+      if (res.success) {
+        router.push('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -121,11 +129,11 @@ const RegistrationForm = () => {
                   </FormItem>
                 )}
               />
-              <Button className='cursor-pointer' type='submit'>
+              <Button className='cursor-pointer bg-[#029fae]' type='submit'>
                 Submit
               </Button>
               <nav>
-                <Button>
+                <Button className='bg-[#029fae]'>
                   <Link href='/'>Home</Link>
                 </Button>
               </nav>

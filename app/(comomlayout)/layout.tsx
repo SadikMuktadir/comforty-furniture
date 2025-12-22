@@ -3,11 +3,11 @@ import Navbar from '@/components/shared/Navbar';
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className='m-10'>
-      <div className='mb-5'>
+    <div>
+      <div>
         <Navbar></Navbar>
       </div>
-      <div className='mb-5'>
+      <div className='my-2'>
         <BottomNavbar></BottomNavbar>
       </div>
       {children}
