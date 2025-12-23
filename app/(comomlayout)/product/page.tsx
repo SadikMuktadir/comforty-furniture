@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useAppDispatch } from '@/redux/hook';
 import { addProduct } from '@/redux/features/cartSlice';
 import { Spinner } from '@/components/ui/spinner';
+import { toast } from 'sonner';
 
 export interface IFurniture {
   _id: string;
@@ -23,6 +24,7 @@ const Furnitures = () => {
   const [loading, setLoading] = useState(true);
 
   const handleAddProduct = (item: IFurniture) => {
+    toast('Furniture Added Succesfully...');
     dispatch(addProduct(item));
   };
 

@@ -71,7 +71,7 @@ const Navbar = () => {
                     <DropdownMenuItem>{user?.role}</DropdownMenuItem>
                     <DropdownMenuItem>
                       <nav>
-                        <Button className='bg-[#029fae]' onClick={handleLogout}>
+                        <Button className='cursor-pointer bg-[#029fae]' onClick={handleLogout}>
                           Logout
                         </Button>
                       </nav>

@@ -16,11 +16,12 @@ import { loginUser } from '@/services/AuthServices';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginValidationSchema } from './LoginValidationSchema';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const LoginForm = () => {
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirectPath');
+  // const searchParams = useSearchParams();
+  // const redirect = searchParams.get('redirectPath');
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginValidationSchema),
@@ -29,8 +30,8 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
-      console.log(res);
-      if (redirect) {
+      if (res) {
+        toast('Login Succesfully...');
         router.push('/');
       }
     } catch (error) {

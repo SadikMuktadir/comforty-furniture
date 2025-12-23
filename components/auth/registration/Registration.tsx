@@ -16,6 +16,7 @@ import { RegisterFormData, registrationSchema } from './RegistrationValidation';
 import { registerUser } from '@/services/AuthServices';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const RegistrationForm = () => {
   const router = useRouter();
@@ -38,9 +39,9 @@ const RegistrationForm = () => {
     formData.append('password', data.password);
     try {
       const res = await registerUser(formData);
-      console.log(res);
-      if (res.success) {
-        router.push('/');
+      if (res) {
+        toast('Registration Succesfully...');
+        router.push('/login');
       }
     } catch (error) {
       console.log(error);
