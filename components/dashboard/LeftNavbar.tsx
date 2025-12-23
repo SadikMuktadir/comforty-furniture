@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {
   House,
   ShoppingBag,
+  Sofa,
   SquarePlus,
   UserRoundPen,
   UsersRound,
@@ -75,6 +76,14 @@ const LeftNavbar = () => {
                 <SquarePlus className='mr-3 group-hover:text-white' />
                 <span className='text-[20px] group-hover:text-white'>
                   Create Furniture
+                </span>
+              </div>
+            </Link>
+            <Link href='/admin/all-furniture' className='block'>
+              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+                <Sofa className='mr-3 group-hover:text-white' />
+                <span className='text-[20px] group-hover:text-white'>
+                  All Furniture
                 </span>
               </div>
             </Link>
