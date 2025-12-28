@@ -18,7 +18,7 @@ const Banner = () => {
           </p>
         </div>
         <div>
-          <Link href='/shop'>
+          <Link href='/product'>
             <Button className='bg-[#029fae] cursor-pointer'>
               Shop Now
               <span className='ml-1'>

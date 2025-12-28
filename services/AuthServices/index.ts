@@ -6,17 +6,25 @@ import { FieldValues } from 'react-hook-form';
 
 export const registerUser = async (formData: FormData) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/register`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (!res.ok) {
-      const text = await res.text();
-      throw new Error(text);
-    }
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/register-user`,
+      {
+        method: 'POST',
+        body: formData,
+        cache: 'no-store',
+      }
+    );
 
     const result = await res.json();
+
+    if (result?.success && result?.token) {
+      (await cookies()).set('token', result.token, {
+        httpOnly: true,
+        sameSite: 'strict',
+        path: '/',
+        maxAge: 60 * 60 * 24 * 30,
+      });
+    }
 
     return result;
   } catch (error: any) {
@@ -26,7 +34,7 @@ export const registerUser = async (formData: FormData) => {
 
 export const loginUser = async (userData: FieldValues) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/login-user`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

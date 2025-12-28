@@ -41,7 +41,7 @@ const RegistrationForm = () => {
       const res = await registerUser(formData);
       if (res) {
         toast('Registration Succesfully...');
-        router.push('/login');
+        router.push('/');
       }
     } catch (error) {
       console.log(error);
