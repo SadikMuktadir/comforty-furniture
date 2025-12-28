@@ -7,6 +7,7 @@ import {
   ShoppingBag,
   Sofa,
   SquarePlus,
+  Star,
   UserRoundPen,
   UsersRound,
 } from 'lucide-react';
@@ -18,6 +19,8 @@ const LeftNavbar = () => {
   const myProfile =
     user?.role === 'admin' ? '/admin/my-profile' : '/user/my-profile';
   const myCart = user?.role === 'admin' ? '/admin/my-cart' : '/user/my-cart';
+  const myReview =
+    user?.role === 'admin' ? '/admin/my-review' : '/user/my-review';
   return (
     <div>
       <div className='flex justify-center p-5'>
@@ -60,6 +63,14 @@ const LeftNavbar = () => {
               </span>
             </div>
           </Link>
+          <Link href={myReview} className='block'>
+            <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+              <Star className='mr-3 group-hover:text-white' />
+              <span className='text-[20px] group-hover:text-white'>
+                Add Review
+              </span>
+            </div>
+          </Link>
         </div>
         {user?.role === 'admin' && (
           <div>
@@ -84,6 +95,14 @@ const LeftNavbar = () => {
                 <Sofa className='mr-3 group-hover:text-white' />
                 <span className='text-[20px] group-hover:text-white'>
                   All Furniture
+                </span>
+              </div>
+            </Link>
+            <Link href='/admin/all-reviews' className='block'>
+              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
+                <Star className='mr-3 group-hover:text-white' />
+                <span className='text-[20px] group-hover:text-white'>
+                  All Reviews
                 </span>
               </div>
             </Link>

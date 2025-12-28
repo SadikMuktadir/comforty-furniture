@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 
 export const getAllUser = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/all-user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
