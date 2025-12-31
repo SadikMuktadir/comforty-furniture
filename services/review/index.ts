@@ -21,23 +21,26 @@ export const createReviewData = async (data: FormData) => {
 
 export const getAllReview = async () => {
   try {
+    const token = (await cookies()).get('token')?.value;
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/all-review`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: (await cookies()).get('token')!.value,
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
+      cache: 'no-store',
     });
 
     if (!res.ok) {
       throw new Error(`Error fetching review: ${res.statusText}`);
     }
 
-    const data = await res.json();
+    const result = await res.json();
 
-    return Array.isArray(data.data) ? data.data : [];
+    return Array.isArray(result?.data) ? result.data : [];
   } catch (error) {
-    console.log('Failed to fetch review:', error);
+    console.error('Failed to fetch review:', error);
     return [];
   }
 };

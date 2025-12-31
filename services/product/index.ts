@@ -21,14 +21,17 @@ export const createFurnitureData = async (data: FormData) => {
 
 export const getAllFurniture = async () => {
   try {
+    const token = (await cookies()).get('token')?.value;
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/all-furniture`,
       {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: (await cookies()).get('token')!.value,
+          ...(token && { Authorization: `Bearer ${token}` }),
         },
+        cache: 'no-store',
       }
     );
 
@@ -36,12 +39,11 @@ export const getAllFurniture = async () => {
       throw new Error(`Error fetching furniture: ${res.statusText}`);
     }
 
-    const data = await res.json();
+    const result = await res.json();
 
-    // Ensure we always return an array
-    return Array.isArray(data.data) ? data.data : [];
+    return Array.isArray(result?.data) ? result.data : [];
   } catch (error) {
-    console.log('Failed to fetch furniture:', error);
+    console.error('Failed to fetch furniture:', error);
     return [];
   }
 };
