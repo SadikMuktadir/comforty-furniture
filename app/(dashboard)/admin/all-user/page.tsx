@@ -12,9 +12,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { getAllUser } from '@/services/user';
+import { Button } from '@/components/ui/button';
+import { Trash2 } from 'lucide-react';
 
 interface IUser {
-  _id:string
+  _id: string;
   name: string;
   email: string;
   role: string;
@@ -49,6 +51,7 @@ const AllUser = () => {
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead className='text-right'>Role</TableHead>
+            <TableHead className='text-right'>Action</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -68,7 +71,23 @@ const AllUser = () => {
               </TableCell>
               <TableCell>{item?.name}</TableCell>
               <TableCell>{item?.email}</TableCell>
-              <TableCell className='text-right'>{item?.role}</TableCell>
+
+              <TableCell className='text-right'>
+                {item?.role === 'admin' ? (
+                  <Button className='bg-[#029fae] cursor-pointer'>
+                    {item?.role}
+                  </Button>
+                ) : (
+                  <Button className='bg-[#029fae] cursor-pointer'>
+                    {item?.role}
+                  </Button>
+                )}
+              </TableCell>
+              <TableCell className='text-right'>
+                <Button className='bg-[#029fae] cursor-pointer'>
+                  <Trash2 />
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
