@@ -12,26 +12,35 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { loginUser } from '@/services/AuthServices';
+import { currentUser, loginUser } from '@/services/AuthServices';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginValidationSchema } from './LoginValidationSchema';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { Loader } from 'lucide-react';
+import { useUser } from '@/context/UserContext';
 
 const LoginForm = () => {
-  // const searchParams = useSearchParams();
-  // const redirect = searchParams.get('redirectPath');
+  const { setUser, setLoading } = useUser();
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginValidationSchema),
   });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
       if (res) {
         toast('Login Succesfully...');
+        const user = await currentUser();
+        setUser(user);
+        setLoading(false);
+        router.refresh();
         router.push('/');
       }
     } catch (error) {
@@ -84,11 +93,11 @@ const LoginForm = () => {
                   </FormItem>
                 )}
               />
-              <Button className='cursor-pointer bg-[#029fae]' type='submit'>
-                Submit
+              <Button className='w-full cursor-pointer bg-[#029fae]' type='submit'>
+                {isSubmitting ? <Loader /> : 'Login'}
               </Button>
               <nav>
-                <Button className='bg-[#029fae]'>
+                <Button className='w-full bg-[#029fae]'>
                   <Link href='/'>Home</Link>
                 </Button>
               </nav>

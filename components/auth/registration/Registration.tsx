@@ -13,12 +13,15 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { RegisterFormData, registrationSchema } from './RegistrationValidation';
-import { registerUser } from '@/services/AuthServices';
+import { currentUser, registerUser } from '@/services/AuthServices';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useUser } from '@/context/UserContext';
+import { Loader } from 'lucide-react';
 
 const RegistrationForm = () => {
+  const { setUser, setLoading } = useUser();
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(registrationSchema),
@@ -29,6 +32,10 @@ const RegistrationForm = () => {
       password: '',
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   const onSubmit = async (data: RegisterFormData) => {
     const formData = new FormData();
@@ -41,6 +48,10 @@ const RegistrationForm = () => {
       const res = await registerUser(formData);
       if (res) {
         toast('Registration Succesfully...');
+        const user = await currentUser();
+        setUser(user);
+        setLoading(false);
+        router.refresh();
         router.push('/');
       }
     } catch (error) {
@@ -130,11 +141,14 @@ const RegistrationForm = () => {
                   </FormItem>
                 )}
               />
-              <Button className='cursor-pointer bg-[#029fae]' type='submit'>
-                Submit
+              <Button
+                className='w-full cursor-pointer bg-[#029fae]'
+                type='submit'
+              >
+                {isSubmitting ? <Loader /> : 'Register'}
               </Button>
               <nav>
-                <Button className='bg-[#029fae]'>
+                <Button className='w-full bg-[#029fae]'>
                   <Link href='/'>Home</Link>
                 </Button>
               </nav>
