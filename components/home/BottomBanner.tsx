@@ -6,56 +6,52 @@ import secureImg from '../../public/image/shield.png';
 
 const BottomBanner = () => {
   return (
-    <div className='w-[80%] px-[70px] py-[50px] bg-[#ffffff] shadow-xl flex justify-center gap-10'>
-      <div className='flex'>
-        <div className='mr-8'>
-          <Image src={boxImg} alt='twentyFourImg'></Image>
-        </div>
-        <div>
+    <div
+      className='bg-white shadow-xl 
+                    mx-auto mt-10
+                    px-6 py-10 
+                    sm:px-10 md:px-14
+                    max-w-7xl rounded-xl'
+    >
+      <div
+        className='grid grid-cols-1 
+                      sm:grid-cols-2 
+                      lg:grid-cols-4 
+                      gap-8'
+      >
+        {/* Item */}
+        <div className='flex items-center gap-5 justify-center sm:justify-start'>
+          <Image src={boxImg} alt='Fast delivery' className='w-12 h-12' />
           <div>
-            <p className='text-[#272343]'>Great Support 24/7</p>
-          </div>
-          <div>
-            <p className='text-[#9a9caa]'>We care your experiences</p>
-          </div>
-        </div>
-      </div>
-      <div className='flex'>
-        <div className='mr-8'>
-          <Image src={truckImg} alt='twentyFourImg'></Image>
-        </div>
-        <div>
-          <div>
-            <p className='text-[#272343]'>Great Support 24/7</p>
-          </div>
-          <div>
-            <p className='text-[#9a9caa]'>We care your experiences</p>
+            <p className='text-[#272343] font-medium'>Fast Delivery</p>
+            <p className='text-[#9a9caa] text-sm'>We care your experiences</p>
           </div>
         </div>
-      </div>
-      <div className='flex'>
-        <div className='mr-8'>
-          <Image src={twentyFourImg} alt='twentyFourImg'></Image>
-        </div>
-        <div>
+
+        {/* Item */}
+        <div className='flex items-center gap-5 justify-center sm:justify-start'>
+          <Image src={truckImg} alt='Free shipping' className='w-12 h-12' />
           <div>
-            <p className='text-[#272343]'>Great Support 24/7</p>
-          </div>
-          <div>
-            <p className='text-[#9a9caa]'>We care your experiences</p>
+            <p className='text-[#272343] font-medium'>Free Shipping</p>
+            <p className='text-[#9a9caa] text-sm'>On all orders</p>
           </div>
         </div>
-      </div>
-      <div className='flex'>
-        <div className='mr-8'>
-          <Image src={secureImg} alt='twentyFourImg'></Image>
-        </div>
-        <div>
+
+        {/* Item */}
+        <div className='flex items-center gap-5 justify-center sm:justify-start'>
+          <Image src={twentyFourImg} alt='24/7 Support' className='w-12 h-12' />
           <div>
-            <p className='text-[#272343]'>Great Support 24/7</p>
+            <p className='text-[#272343] font-medium'>24/7 Support</p>
+            <p className='text-[#9a9caa] text-sm'>We care your experiences</p>
           </div>
+        </div>
+
+        {/* Item */}
+        <div className='flex items-center gap-5 justify-center sm:justify-start'>
+          <Image src={secureImg} alt='Secure payment' className='w-12 h-12' />
           <div>
-            <p className='text-[#9a9caa]'>We care your experiences</p>
+            <p className='text-[#272343] font-medium'>Secure Payment</p>
+            <p className='text-[#9a9caa] text-sm'>100% Protected</p>
           </div>
         </div>
       </div>

@@ -12,12 +12,21 @@ const images = [image1, image2, image3, image4, image5, image6, image7];
 
 const MaqueeCom = () => {
   return (
-    <div>
-      <Marquee speed={70}>
-        <div className='flex items-center space-x-20'>
+    <div className='py-10 bg-white overflow-hidden'>
+      <Marquee speed={50} pauseOnHover gradient={false}>
+        <div className='flex items-center gap-10 sm:gap-16 md:gap-20 px-4'>
           {images.map((img, index) => (
-            <div key={index}>
-              <Image src={img} alt={`image-${index}`} width={120} height={80} />
+            <div
+              key={index}
+              className='flex items-center justify-center min-w-[80px] sm:min-w-[120px]'
+            >
+              <Image
+                src={img}
+                alt={`brand-${index}`}
+                className='object-contain 
+                           w-[80px] sm:w-[100px] md:w-[120px]
+                           h-auto'
+              />
             </div>
           ))}
         </div>
