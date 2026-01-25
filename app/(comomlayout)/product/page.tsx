@@ -24,7 +24,7 @@ const Furnitures = () => {
   const [loading, setLoading] = useState(true);
 
   const handleAddProduct = (item: IFurniture) => {
-    toast('Furniture Added Succesfully...');
+    toast('Furniture added successfully');
     dispatch(addProduct(item));
   };
 
@@ -40,47 +40,59 @@ const Furnitures = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
   if (loading)
     return (
-      <div className='flex justify-center items-center h-40'>
+      <div className='flex justify-center items-center py-20'>
         <Spinner className='text-[#029fae]' />
       </div>
     );
+
   if (furniture.length === 0)
-    return <p className='text-center'>No furniture found.</p>;
+    return <p className='text-center py-20'>No furniture found.</p>;
 
   return (
-    <div className='my-[100px] grid grid-cols-3 gap-8'>
-      {furniture.map((item) => (
-        <div
-          key={item._id}
-          className='flex h-[500px] flex-col justify-between rounded-lg border p-4 shadow-sm'
-        >
-          <div className='mb-4 flex items-center justify-center overflow-hidden'>
-            <img src={item.image} alt={item.name} className='h-full w-full' />
-          </div>
-
-          <div className='flex items-end justify-between'>
-            <div>
-              <p className='mb-2 line-clamp-2 text-[16px] text-[#029fae]'>
-                {item.description}
-              </p>
-              <p className='text-[18px] font-semibold'>${item.price}</p>
+    <div className='my-20 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+        {furniture.map((item) => (
+          <div
+            key={item._id}
+            className='flex flex-col rounded-xl border p-4 shadow-sm
+                       transition hover:shadow-lg'
+          >
+            {/* Image */}
+            <div className='mb-4 aspect-square overflow-hidden rounded-lg bg-gray-100'>
+              <img
+                src={item.image}
+                alt={item.name}
+                className='h-full w-full object-cover
+                           transition-transform duration-300 hover:scale-105'
+              />
             </div>
 
-            <Button
-              onClick={() => handleAddProduct(item)}
-              className='cursor-pointer bg-[#029fae] text-white'
-            >
-              <ShoppingCart />
-            </Button>
+            {/* Info + Action */}
+            <div className='flex items-center justify-between gap-4'>
+              <div>
+                <p className='mb-2 line-clamp-2 text-sm sm:text-base text-[#029fae]'>
+                  {item.description}
+                </p>
+                <p className='text-lg font-semibold text-[#272343]'>
+                  ${item.price}
+                </p>
+              </div>
+
+              <Button
+                onClick={() => handleAddProduct(item)}
+                className='bg-[#029fae] hover:bg-[#028896] p-3'
+              >
+                <ShoppingCart />
+              </Button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
