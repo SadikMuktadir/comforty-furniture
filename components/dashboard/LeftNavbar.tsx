@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import imageLogo from '../../public/image/dashboard-logo.png';
 import Link from 'next/link';
@@ -21,95 +22,70 @@ const LeftNavbar = () => {
   const myCart = user?.role === 'admin' ? '/admin/my-cart' : '/user/my-cart';
   const myReview =
     user?.role === 'admin' ? '/admin/my-review' : '/user/my-review';
+
+  const navItem =
+    'group flex items-center gap-3 p-3 sm:p-4 rounded-lg text-white hover:bg-white/10 transition';
+
   return (
-    <div>
-      <div className='flex justify-center p-5'>
-        <div className='mr-5'>
-          <Image
-            src={imageLogo}
-            alt='image-logo'
-            height={50}
-            width={50}
-          ></Image>
-        </div>
-        <div>
-          <p className='text-[35px] text-white'>Comforty</p>
-        </div>
+    <aside className='h-screen bg-[#1f2937] w-20 sm:w-64 fixed left-0 top-0'>
+      {/* Logo */}
+      <div className='flex items-center justify-center sm:justify-start gap-3 p-4'>
+        <Image src={imageLogo} alt='logo' width={40} height={40} />
+        <span className='hidden sm:block text-2xl font-semibold text-white'>
+          Comforty
+        </span>
       </div>
-      <div>
-        <hr />
-      </div>
-      <div>
-        <Link href='/' className='block'>
-          <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-            <House className='mr-3 group-hover:text-white' />
-            <span className='text-[20px] group-hover:text-white'>Home</span>
-          </div>
+
+      <hr className='border-white/20 mb-2' />
+
+      {/* Menu */}
+      <nav className='px-2 space-y-1'>
+        <Link href='/' className={navItem}>
+          <House size={20} />
+          <span className='hidden sm:block'>Home</span>
         </Link>
-        <div>
-          <Link href={myProfile} className='block'>
-            <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-              <UserRoundPen className='mr-3 group-hover:text-white' />
-              <span className='text-[20px] group-hover:text-white'>
-                My Profile
-              </span>
-            </div>
-          </Link>
-          <Link href={myCart} className='block'>
-            <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-              <ShoppingBag className='mr-3 group-hover:text-white' />
-              <span className='text-[20px] group-hover:text-white'>
-                My Cart
-              </span>
-            </div>
-          </Link>
-          <Link href={myReview} className='block'>
-            <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-              <Star className='mr-3 group-hover:text-white' />
-              <span className='text-[20px] group-hover:text-white'>
-                Add Review
-              </span>
-            </div>
-          </Link>
-        </div>
+
+        <Link href={myProfile} className={navItem}>
+          <UserRoundPen size={20} />
+          <span className='hidden sm:block'>My Profile</span>
+        </Link>
+
+        <Link href={myCart} className={navItem}>
+          <ShoppingBag size={20} />
+          <span className='hidden sm:block'>My Cart</span>
+        </Link>
+
+        <Link href={myReview} className={navItem}>
+          <Star size={20} />
+          <span className='hidden sm:block'>Add Review</span>
+        </Link>
+
+        {/* Admin Only */}
         {user?.role === 'admin' && (
-          <div>
-            <Link href='/admin/all-user' className='block'>
-              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-                <UsersRound className='mr-3 group-hover:text-white' />
-                <span className='text-[20px] group-hover:text-white'>
-                  All User
-                </span>
-              </div>
+          <>
+            <Link href='/admin/all-user' className={navItem}>
+              <UsersRound size={20} />
+              <span className='hidden sm:block'>All Users</span>
             </Link>
-            <Link href='/admin/create-furniture' className='block'>
-              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-                <SquarePlus className='mr-3 group-hover:text-white' />
-                <span className='text-[20px] group-hover:text-white'>
-                  Create Furniture
-                </span>
-              </div>
+
+            <Link href='/admin/create-furniture' className={navItem}>
+              <SquarePlus size={20} />
+              <span className='hidden sm:block'>Create Furniture</span>
             </Link>
-            <Link href='/admin/all-furniture' className='block'>
-              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-                <Sofa className='mr-3 group-hover:text-white' />
-                <span className='text-[20px] group-hover:text-white'>
-                  All Furniture
-                </span>
-              </div>
+
+            <Link href='/admin/all-furniture' className={navItem}>
+              <Sofa size={20} />
+              <span className='hidden sm:block'>All Furniture</span>
             </Link>
-            <Link href='/admin/all-reviews' className='block'>
-              <div className='group text-white flex items-center p-5 rounded-lg hover:bg-white/10 transition'>
-                <Star className='mr-3 group-hover:text-white' />
-                <span className='text-[20px] group-hover:text-white'>
-                  All Reviews
-                </span>
-              </div>
+
+            <Link href='/admin/all-reviews' className={navItem}>
+              <Star size={20} />
+              <span className='hidden sm:block'>All Reviews</span>
             </Link>
-          </div>
+          </>
         )}
-      </div>
-    </div>
+      </nav>
+    </aside>
   );
 };
 
