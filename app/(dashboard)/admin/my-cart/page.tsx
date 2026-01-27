@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
+
 import { orderedProducts } from '@/redux/features/cartSlice';
 import { useAppSelector } from '@/redux/hook';
 import {
@@ -14,10 +15,11 @@ import {
 
 const MyCart = () => {
   const products = useAppSelector(orderedProducts);
+
   return (
-    <div>
-      <Table>
-        <TableCaption>All registered users</TableCaption>
+    <div className='w-full overflow-x-auto px-2 sm:px-0'>
+      <Table className='min-w-[600px]'>
+        <TableCaption>My Cart Products</TableCaption>
 
         <TableHeader>
           <TableRow>
@@ -34,17 +36,24 @@ const MyCart = () => {
               <TableCell>
                 {item?.image ? (
                   <img
-                    src={item?.image}
-                    alt={item?.name}
-                    className='h-10 w-10 rounded-full object-cover'
+                    src={item.image}
+                    alt={item.name}
+                    className='h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover'
                   />
                 ) : (
                   'N/A'
                 )}
               </TableCell>
-              <TableCell>{item?.name}</TableCell>
-              <TableCell>{item?.description}</TableCell>
-              <TableCell className='text-right'>{item?.price}</TableCell>
+
+              <TableCell className='font-medium'>{item?.name}</TableCell>
+
+              <TableCell className='max-w-[200px] truncate text-sm text-gray-600'>
+                {item?.description}
+              </TableCell>
+
+              <TableCell className='text-right font-semibold'>
+                ${item?.price}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

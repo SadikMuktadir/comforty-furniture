@@ -41,8 +41,8 @@ const AllUser = () => {
   if (user.length === 0) return <p>No User found.</p>;
 
   return (
-    <div>
-      <Table>
+    <div className='w-full overflow-x-auto px-2 sm:px-0'>
+      <Table className='min-w-[700px]'>
         <TableCaption>All registered users</TableCaption>
 
         <TableHeader>
@@ -57,35 +57,34 @@ const AllUser = () => {
 
         <TableBody>
           {user.map((item) => (
-            <TableRow key={item?.email}>
+            <TableRow key={item._id}>
               <TableCell>
                 {item?.image ? (
                   <img
-                    src={item?.image}
-                    alt={item?.name}
-                    className='h-10 w-10 rounded-full object-cover'
+                    src={item.image}
+                    alt={item.name}
+                    className='h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover'
                   />
                 ) : (
                   'N/A'
                 )}
               </TableCell>
-              <TableCell>{item?.name}</TableCell>
-              <TableCell>{item?.email}</TableCell>
+
+              <TableCell className='font-medium'>{item.name}</TableCell>
+
+              <TableCell className='max-w-[220px] truncate text-sm text-gray-600'>
+                {item.email}
+              </TableCell>
 
               <TableCell className='text-right'>
-                {item?.role === 'admin' ? (
-                  <Button className='bg-[#029fae] cursor-pointer'>
-                    {item?.role}
-                  </Button>
-                ) : (
-                  <Button className='bg-[#029fae] cursor-pointer'>
-                    {item?.role}
-                  </Button>
-                )}
+                <Button size='sm' className='bg-[#029fae] capitalize'>
+                  {item.role}
+                </Button>
               </TableCell>
+
               <TableCell className='text-right'>
-                <Button className='bg-[#029fae] cursor-pointer'>
-                  <Trash2 />
+                <Button size='icon' className='bg-red-500 hover:bg-red-600'>
+                  <Trash2 className='h-4 w-4' />
                 </Button>
               </TableCell>
             </TableRow>
