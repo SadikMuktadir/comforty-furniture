@@ -17,10 +17,10 @@ const Home = () => {
       <div className='my-[50px]'>
         <MaqueeCom></MaqueeCom>
       </div>
-      <div className='m-[50px]'>
+      <div className='m-4 lg:m-[50px]'>
         <FeatureProducts></FeatureProducts>
       </div>
-      <div className='m-[50px]'>
+      <div className='m-4 lg:m-[50px]'>
         <RecentlyAdded></RecentlyAdded>
       </div>
       <div>

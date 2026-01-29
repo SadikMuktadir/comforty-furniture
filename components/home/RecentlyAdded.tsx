@@ -38,7 +38,7 @@ const RecentlyAdded = () => {
     return <p className='text-center'>No furniture found.</p>;
 
   return (
-    <div className='my-20 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto'>
+    <div className='my-20 lg:px-16 max-w-7xl mx-auto'>
       {/* Section Title */}
       <div className='mb-12 text-center sm:text-left'>
         <p className='text-[#272343] text-2xl sm:text-3xl md:text-4xl font-bold'>
