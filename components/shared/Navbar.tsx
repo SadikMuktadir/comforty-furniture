@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import { useUser } from '@/context/UserContext';
 import logoImage from '../../public/image/comforty-logo.png';
+import { useTheme } from 'next-themes';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,13 +21,14 @@ import { Avatar, AvatarImage } from '../ui/avatar';
 import { usePathname, useRouter } from 'next/navigation';
 import { protectedRoutes } from '@/constants';
 import { useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
 
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user, setLoading } = useUser();
   const [open, setOpen] = useState(false);
-
+  const { setTheme } = useTheme();
   const handleLogout = () => {
     logOut();
     setLoading(true);
@@ -51,6 +53,28 @@ const Navbar = () => {
 
         {/* Right Section */}
         <div className='flex items-center gap-4'>
+          <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant='outline' size='icon'>
+                  <Sun className='h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90' />
+                  <Moon className='absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
+                  <span className='sr-only'>Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align='end'>
+                <DropdownMenuItem onClick={() => setTheme('light')}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme('dark')}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme('system')}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
           {/* Cart */}
           {user && (
             <Link
