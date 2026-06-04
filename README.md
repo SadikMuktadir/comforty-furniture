@@ -52,8 +52,7 @@ A modern and responsive **Furniture E-Commerce Web Application** where users can
 - **Tailwind CSS**
 
 ### Authentication
-- **Firebase Authentication**
-- Google Sign-In
+- **JWT**
 
 ### Deployment
 - **Vercel**
@@ -62,17 +61,9 @@ A modern and responsive **Furniture E-Commerce Web Application** where users can
 
 ## 🚀 Installation & Setup
 
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/your-repository-name.git
-```
 
 Go to the project folder:
 
-```bash
-cd your-repository-name
-```
 
 Install dependencies:
 
@@ -92,20 +83,6 @@ Open:
 http://localhost:3000
 ```
 
----
-
-## 🔑 Environment Variables
-
-Create a `.env.local` file in the root directory and add:
-
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-```
 
 ---
 
@@ -185,8 +162,7 @@ This project is licensed under the **MIT License**.
 Developed with ❤️ by **Sadik Moktadir Mithun**
 
 ### Connect With Me
-- GitHub: https://github.com/your-username
-- LinkedIn: https://linkedin.com/in/your-profile
+- GitHub: [https://github.com/your-username](https://github.com/SadikMuktadir)
 
 ---
 
