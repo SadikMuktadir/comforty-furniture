@@ -103,21 +103,6 @@ A modern, responsive **Furniture E-Commerce Web Application** built with Next.js
 
 ---
 
-## 📂 Project Structure
-
-```bash
-src/
-│── app/
-│── components/
-│── context/
-│── redux/
-│── services/
-│── ui/
-│── lib/
-│── validations/
-│── public/
-
-```
 
 ---
 
@@ -180,9 +165,5 @@ This project is licensed under the **MIT License**.
 
 Developed with ❤️ by **Sadik Moktadir Mithun**
 
-### Connect With Me
-- GitHub: [https://github.com/your-username](https://github.com/SadikMuktadir)
-
----
 
 ⭐ If you like this project, don't forget to **star the repository**!
