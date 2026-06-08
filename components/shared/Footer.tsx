@@ -1,63 +1,227 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
 import logoImg from '../../public/image/comforty-logo.png';
 import { Input } from '../ui/input';
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Send,
+} from 'lucide-react';
 
 const Footer = () => {
   return (
-    <div>
-      <footer className='px-[50px] w-full text-sm text-slate-500 bg-white pt-10'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
-          <div className='sm:col-span-2 lg:col-span-1'>
-            <Image src={logoImg} alt='logoImg' height={150} width={170}></Image>
-            <p className='text-sm/7 mt-6'>
-              ...
+    <footer className="relative overflow-hidden border-t border-white/10 bg-background">
+      {/* Background Glow */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="
+            absolute bottom-0 left-0
+            h-[300px] w-[300px]
+            rounded-full
+            bg-[#029fae]/10
+            blur-[120px]
+          "
+        />
+
+        <div
+          className="
+            absolute top-0 right-0
+            h-[300px] w-[300px]
+            rounded-full
+            bg-[#029fae]/10
+            blur-[120px]
+          "
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-14">
+          {/* Brand */}
+          <div className="xl:col-span-2">
+            <Image
+              src={logoImg}
+              alt="Comforty Logo"
+              width={180}
+              height={60}
+              className="object-contain"
+            />
+
+            <p className="mt-6 max-w-md text-muted-foreground leading-8">
+              Comforty brings premium furniture crafted for
+              modern living. Elegant, stylish, and built to
+              transform your home into a luxurious and
+              comfortable space.
             </p>
-          </div>
-          <div className='flex flex-col lg:items-center lg:justify-center'>
-            <div className='flex flex-col text-sm space-y-2.5'>
-              <h2 className='font-semibold mb-5 text-gray-800'>Company</h2>
-              <a className='hover:text-slate-600 transition' href='#'>
-                About us
-              </a>
-              <a className='hover:text-slate-600 transition' href='#'>
-                Careers
-                <span className='text-xs text-white bg-[#029fae] rounded-md ml-2 px-2 py-1'>
-                  We’re hiring!
-                </span>
-              </a>
-              <a className='hover:text-slate-600 transition' href='#'>
-                Contact us
-              </a>
-              <a className='hover:text-slate-600 transition' href='#'>
-                Privacy policy
-              </a>
+
+            {/* Socials */}
+            <div className="mt-8 flex items-center gap-4">
+              {[
+                Facebook,
+                Instagram,
+                Twitter,
+                Linkedin,
+              ].map((Icon, index) => (
+                <button
+                  key={index}
+                  className="
+                    flex h-11 w-11
+                    items-center justify-center
+                    rounded-full
+                    border border-white/10
+                    bg-white/[0.03]
+                    transition-all duration-300
+                    hover:bg-[#029fae]
+                    hover:text-white
+                    hover:scale-110
+                  "
+                >
+                  <Icon className="h-5 w-5" />
+                </button>
+              ))}
             </div>
           </div>
+
+          {/* Company */}
           <div>
-            <h2 className='font-semibold text-gray-800 mb-5'>
-              Subscribe to our newsletter
-            </h2>
-            <div className='text-sm space-y-6 max-w-sm'>
-              <p>
-                The latest news, articles, and resources, sent to your inbox
-                weekly.
-              </p>
-              <div className='flex items-center justify-center gap-2 p-2 rounded-md'>
-                <Input type='email' placeholder='Enter your email' />
-                <button className='bg-[#029fae] px-4 py-2 text-white rounded cursor-pointer'>
-                  Subscribe
-                </button>
-              </div>
+            <h3 className="text-lg font-semibold text-foreground mb-6">
+              Company
+            </h3>
+
+            <div className="space-y-4 text-muted-foreground">
+              <Link
+                href="/about"
+                className="block hover:text-[#029fae] transition-colors"
+              >
+                About Us
+              </Link>
+
+              <Link
+                href="/career"
+                className="flex items-center hover:text-[#029fae] transition-colors"
+              >
+                Careers
+
+                <span
+                  className="
+                    ml-2 rounded-full
+                    bg-[#029fae]
+                    px-2 py-1
+                    text-[10px]
+                    font-medium
+                    text-white
+                  "
+                >
+                  Hiring
+                </span>
+              </Link>
+
+              <Link
+                href="/contactus"
+                className="block hover:text-[#029fae] transition-colors"
+              >
+                Contact Us
+              </Link>
+
+              <Link
+                href="/privacy"
+                className="block hover:text-[#029fae] transition-colors"
+              >
+                Privacy Policy
+              </Link>
+            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h3 className="text-lg font-semibold text-foreground mb-6">
+              Newsletter
+            </h3>
+
+            <p className="text-muted-foreground leading-7 mb-6">
+              Subscribe to get furniture inspiration,
+              exclusive offers, and interior updates.
+            </p>
+
+            <div className="flex flex-col gap-3">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="
+                  h-12
+                  border-white/10
+                  bg-white/[0.03]
+                  backdrop-blur-md
+                "
+              />
+
+              <button
+                className="
+                  flex items-center justify-center gap-2
+                  rounded-xl
+                  bg-[#029fae]
+                  hover:bg-[#028896]
+                  h-12
+                  text-white
+                  transition-all duration-300
+                  shadow-lg
+                  shadow-[#029fae]/30
+                "
+              >
+                Subscribe
+                <Send className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>
-        <p className='py-4 text-center border-t mt-6 border-slate-200'>
-          Copyright 2025 ©
-          <span className='text-[#029fae]'>Web Tech Wizard</span> All Right
-          Reserved.
-        </p>
-      </footer>
-    </div>
+
+        {/* Bottom */}
+        <div
+          className="
+            mt-16 pt-8
+            border-t border-white/10
+            flex flex-col md:flex-row
+            items-center justify-between
+            gap-4
+            text-sm text-muted-foreground
+          "
+        >
+          <p>
+            © 2026{' '}
+            <span className="text-[#029fae] font-medium">
+              Comforty
+            </span>
+            . All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-6">
+            <Link
+              href="/terms"
+              className="hover:text-[#029fae]"
+            >
+              Terms
+            </Link>
+
+            <Link
+              href="/privacy"
+              className="hover:text-[#029fae]"
+            >
+              Privacy
+            </Link>
+
+            <Link
+              href="/support"
+              className="hover:text-[#029fae]"
+            >
+              Support
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

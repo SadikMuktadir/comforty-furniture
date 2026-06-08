@@ -19,6 +19,7 @@ import {
   furnitureValidationSchema,
 } from './furnitureValidationSchema';
 import { createFurnitureData } from '@/services/product';
+import { UploadCloud } from 'lucide-react';
 
 const CreateFurniture = () => {
   const form = useForm({
@@ -39,85 +40,115 @@ const CreateFurniture = () => {
     formData.append('description', data.description);
     formData.append('price', String(data.price));
 
-    const res = await createFurnitureData(formData);
-    console.log(res);
+    await createFurnitureData(formData);
   };
 
   return (
-    <div className='min-h-screen w-full flex items-center justify-center p-5'>
-      <Card className='w-full max-w-md shadow-xl'>
-        <CardHeader>
-          <CardTitle className='text-center text-2xl font-semibold'>
+    <div className="min-h-screen w-full flex items-center justify-center px-4 py-10 bg-gradient-to-br from-[#f0f2f3] to-white dark:from-gray-900 dark:to-gray-950">
+      <Card className="w-full max-w-lg rounded-2xl shadow-xl border border-white/10 backdrop-blur-xl bg-white/70 dark:bg-gray-900/60">
+        
+        {/* Header */}
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-2xl font-bold text-[#272343] dark:text-white">
             Create Furniture
           </CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Add new product to your collection
+          </p>
         </CardHeader>
+
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+
+              {/* Image Upload */}
               <FormField
                 control={form.control}
-                name='image'
+                name="image"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Furniture Image</FormLabel>
+
                     <FormControl>
-                      <Input
-                        type='file'
-                        accept='image/*'
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          field.onChange(file);
-                        }}
-                      />
+                      <label
+                        className="
+                          flex flex-col items-center justify-center
+                          border-2 border-dashed border-[#029fae]/40
+                          rounded-xl p-6 cursor-pointer
+                          hover:bg-[#029fae]/5 transition
+                        "
+                      >
+                        <UploadCloud className="h-6 w-6 text-[#029fae]" />
+                        <span className="text-sm mt-2 text-muted-foreground">
+                          Click to upload image
+                        </span>
+
+                        <Input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            field.onChange(file);
+                          }}
+                        />
+                      </label>
                     </FormControl>
+
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Name */}
               <FormField
                 control={form.control}
-                name='name'
+                name="name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Furniture Name</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='Type Furniture Name'
+                        placeholder="e.g. Luxury Sofa"
                         {...field}
-                        value={field.value || ''}
+                        className="focus-visible:ring-[#029fae]"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Description */}
               <FormField
                 control={form.control}
-                name='description'
+                name="description"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='Type description'
+                        placeholder="Short product description"
                         {...field}
-                        value={field.value || ''}
+                        className="focus-visible:ring-[#029fae]"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Price */}
               <FormField
                 control={form.control}
-                name='price'
+                name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Furniture Price</FormLabel>
+                    <FormLabel>Price ($)</FormLabel>
                     <FormControl>
                       <Input
-                        type='number'
-                        placeholder='Type Furniture Price'
+                        type="number"
+                        placeholder="0"
                         value={field.value ?? ''}
                         onChange={(e) =>
                           field.onChange(
@@ -126,20 +157,32 @@ const CreateFurniture = () => {
                               : Number(e.target.value)
                           )
                         }
+                        className="focus-visible:ring-[#029fae]"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button className='cursor-pointer' type='submit'>
-                Submit
-              </Button>
-              <nav>
-                <Button>
-                  <Link href='/'>Home</Link>
+
+              {/* Buttons */}
+              <div className="flex flex-col gap-3 pt-2">
+                <Button
+                  type="submit"
+                  className="w-full bg-[#029fae] hover:bg-[#028896]"
+                >
+                  Submit Furniture
                 </Button>
-              </nav>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full"
+                >
+                  <Link href="/">Back to Home</Link>
+                </Button>
+              </div>
+
             </form>
           </Form>
         </CardContent>

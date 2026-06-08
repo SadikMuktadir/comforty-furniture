@@ -1,83 +1,101 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @next/next/no-img-element */
 'use client';
+
+/* eslint-disable @next/next/no-img-element */
 
 import React from 'react';
 import { useUser } from '@/context/UserContext';
+import { Mail, Shield, Github, Linkedin, Globe } from 'lucide-react';
 
 const MyProfile = () => {
   const { user } = useUser();
-  const [visible, setVisible] = React.useState(false);
-  const [position, setPosition] = React.useState({ x: 0, y: 0 });
-  const divRef = React.useRef<HTMLDivElement | null>(null);
 
   return (
-    <div className='flex justify-center px-4 sm:px-0'>
+    <div className="flex justify-center px-4 sm:px-0 py-10">
       <div
-        ref={divRef}
-        className='
-          relative
-          w-full max-w-sm sm:max-w-md
-          min-h-[420px] sm:min-h-[480px]
-          rounded-xl p-0.5
-          bg-white backdrop-blur-md
-          text-gray-800
-          overflow-hidden shadow-lg
-        '
+        className="
+          relative w-full max-w-md
+          rounded-3xl
+          border border-white/10
+          bg-white/70 dark:bg-gray-900/60
+          backdrop-blur-xl
+          shadow-2xl
+          overflow-hidden
+        "
       >
-        {/* Glow */}
-        {visible && (
-          <div
-            className='
-              pointer-events-none blur-2xl
-              bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500
-              w-64 h-64 absolute z-0 transition-opacity duration-300
-            '
-            style={{ top: position.y - 120, left: position.x - 120 }}
-          />
-        )}
+        {/* Header Glow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#029fae]/10 via-transparent to-purple-500/10" />
 
         {/* Content */}
-        <div className='relative z-10 bg-white p-5 sm:p-6 h-full w-full rounded-[10px] flex flex-col items-center text-center'>
-          <img
-            src={user?.image}
-            alt='Profile Avatar'
-            className='w-20 h-20 sm:w-24 sm:h-24 rounded-full shadow-md my-4 object-cover'
-          />
+        <div className="relative z-10 p-6 sm:p-8 flex flex-col items-center text-center">
 
-          <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-1'>
+          {/* Avatar */}
+          <div className="relative">
+            <img
+              src={user?.image}
+              alt="Profile"
+              className="
+                w-24 h-24 sm:w-28 sm:h-28
+                rounded-full object-cover
+                ring-4 ring-[#029fae]/30
+                shadow-lg
+              "
+            />
+          </div>
+
+          {/* Name */}
+          <h2 className="mt-4 text-2xl font-bold text-[#272343] dark:text-white">
             {user?.name}
           </h2>
 
-          <p className='text-xs sm:text-sm text-indigo-500 font-medium mb-3'>
+          {/* Role */}
+          <div className="flex items-center gap-2 mt-1 text-[#029fae] text-sm font-medium">
+            <Shield className="h-4 w-4" />
             Software Developer
-          </p>
-
-          <p className='text-sm text-gray-500 mb-4 px-2 sm:px-4'>
-            Passionate about clean code, scalable systems, and solving
-            real-world problems with elegant software.
-          </p>
-
-          {/* Social Icons */}
-          <div className='flex gap-4 mb-2 text-indigo-600'>
-            {[1, 2, 3].map((i) => (
-              <a
-                key={i}
-                href='#'
-                className='hover:-translate-y-1 transition-transform'
-              >
-                <svg
-                  className='w-6 h-6 sm:w-7 sm:h-7'
-                  aria-hidden='true'
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z' />
-                </svg>
-              </a>
-            ))}
           </div>
+
+          {/* Email */}
+          <div className="flex items-center gap-2 mt-2 text-muted-foreground text-sm">
+            <Mail className="h-4 w-4" />
+            {user?.email}
+          </div>
+
+          {/* Bio */}
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed px-2">
+            Passionate about clean code, scalable systems, and building modern
+            web applications with elegant UI and strong architecture.
+          </p>
+
+          {/* Social Links */}
+          <div className="flex gap-4 mt-6 text-[#029fae]">
+            <a href="#" className="hover:scale-110 transition">
+              <Github className="h-5 w-5" />
+            </a>
+            <a href="#" className="hover:scale-110 transition">
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a href="#" className="hover:scale-110 transition">
+              <Globe className="h-5 w-5" />
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-4 mt-8 w-full">
+            <div className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-3">
+              <p className="text-lg font-bold text-[#272343]">12</p>
+              <p className="text-xs text-muted-foreground">Orders</p>
+            </div>
+
+            <div className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-3">
+              <p className="text-lg font-bold text-[#272343]">5</p>
+              <p className="text-xs text-muted-foreground">Reviews</p>
+            </div>
+
+            <div className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-3">
+              <p className="text-lg font-bold text-[#272343]">1</p>
+              <p className="text-xs text-muted-foreground">Role</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

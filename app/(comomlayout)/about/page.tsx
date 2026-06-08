@@ -1,92 +1,310 @@
 'use client';
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @next/next/no-img-element */
 
 import { useState } from 'react';
+import Image from 'next/image';
 import bannerImg from '../../../public/image/banner-image.png';
 
+import {
+  ChevronDown,
+  Sofa,
+  ShieldCheck,
+  Truck,
+  BadgeCheck,
+} from 'lucide-react';
+
 const AboutUs = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] =
+    useState<number | null>(0);
 
   const faqs = [
     {
-      question: 'How to use this component?',
+      question:
+        'Do you offer home delivery?',
       answer:
-        "To use this component, you need to import it in your project and use it in your JSX code. Here's an example of how to use it:",
+        'Yes! We provide fast and secure home delivery to ensure your furniture arrives safely and on time.',
     },
     {
-      question: 'Are there any other components available?',
+      question:
+        'Can I customize furniture?',
       answer:
-        "Yes, there are many other components available in this library. You can find them in the 'Components' section of the website.",
+        'Absolutely. Many of our furniture collections offer custom sizes, colors, and material options.',
     },
     {
-      question: 'Are components responsive?',
+      question:
+        'Are your products premium quality?',
       answer:
-        'Yes, all components are responsive and can be used on different screen sizes.',
+        'Yes. We carefully craft every piece using premium materials to ensure durability, elegance, and long-lasting comfort.',
     },
     {
-      question: 'Can I customize the components?',
+      question:
+        'What is your return policy?',
       answer:
-        "Yes, you can customize the components by passing props to them. You can find more information about customizing components in the 'Customization' section of the website.",
+        'We offer an easy return policy for damaged or defective items to ensure complete customer satisfaction.',
+    },
+  ];
+
+  const features = [
+    {
+      icon: Sofa,
+      title: 'Premium Furniture',
+      desc: 'Luxury-crafted furniture designed for elegant living.',
+    },
+    {
+      icon: Truck,
+      title: 'Fast Delivery',
+      desc: 'Safe and reliable shipping for your convenience.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Secure Shopping',
+      desc: 'Trusted payment and secure customer support.',
+    },
+    {
+      icon: BadgeCheck,
+      title: 'Quality Guaranteed',
+      desc: 'Built with premium materials for lasting comfort.',
     },
   ];
 
   return (
-    <div className='my-[100px]'>
-      <div className='max-w-4xl mx-auto flex flex-col md:flex-row items-start justify-center gap-8 px-4 md:px-0'>
-        <img
-          className='max-w-sm w-full rounded-xl h-auto'
-          src={bannerImg.src}
-          alt=''
+    <section className="relative overflow-hidden py-24">
+      {/* Glow Background */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="
+            absolute top-0 left-0
+            h-[350px] w-[350px]
+            rounded-full
+            bg-[#029fae]/10
+            blur-[120px]
+          "
         />
-        <div className='ml-[50px]'>
-          <p className='text-[#029fae] text-sm font-medium'>FAQ's</p>
-          <h1 className='text-3xl font-semibold'>Looking for answer?</h1>
-          <p className='text-sm text-slate-500 mt-2 pb-4'>
-            Ship Beautiful Frontends Without the Overhead — Customizable,
-            Scalable and Developer-Friendly UI Components.
-          </p>
-          {faqs.map((faq, index) => (
+
+        <div
+          className="
+            absolute bottom-0 right-0
+            h-[350px] w-[350px]
+            rounded-full
+            bg-[#029fae]/10
+            blur-[120px]
+          "
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT IMAGE */}
+          <div className="relative">
             <div
-              className='border-b border-slate-200 py-4 cursor-pointer'
-              key={index}
-              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              className="
+                absolute -inset-4
+                rounded-[40px]
+                bg-[#029fae]/10
+                blur-3xl
+              "
+            />
+
+            <div
+              className="
+                relative overflow-hidden
+                rounded-[36px]
+                border border-white/10
+                bg-background/70
+                backdrop-blur-xl
+              "
             >
-              <div className='flex items-center justify-between'>
-                <h3 className='text-base font-medium'>{faq.question}</h3>
-                <svg
-                  width='18'
-                  height='18'
-                  viewBox='0 0 18 18'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                  className={`${
-                    openIndex === index ? 'rotate-180' : ''
-                  } transition-all duration-500 ease-in-out`}
-                >
-                  <path
-                    d='m4.5 7.2 3.793 3.793a1 1 0 0 0 1.414 0L13.5 7.2'
-                    stroke='#1D293D'
-                    strokeWidth='1.5'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-              </div>
-              <p
-                className={`text-sm text-slate-500 transition-all duration-500 ease-in-out max-w-md ${
-                  openIndex === index
-                    ? 'opacity-100 max-h-[300px] translate-y-0 pt-4'
-                    : 'opacity-0 max-h-0 -translate-y-2'
-                }`}
-              >
-                {faq.answer}
-              </p>
+              <Image
+                src={bannerImg}
+                alt="Premium Furniture"
+                className="
+                  w-full h-full
+                  object-cover
+                  transition-transform
+                  duration-700
+                  hover:scale-105
+                "
+              />
             </div>
-          ))}
+          </div>
+
+          {/* RIGHT CONTENT */}
+          <div>
+            <span
+              className="
+                inline-flex items-center
+                rounded-full
+                border border-[#029fae]/20
+                bg-[#029fae]/10
+                px-4 py-2
+                text-sm text-[#029fae]
+              "
+            >
+              About Comforty
+            </span>
+
+            <h1
+              className="
+                mt-5
+                text-4xl sm:text-5xl
+                font-bold
+                text-foreground
+                leading-tight
+              "
+            >
+              Crafting Comfortable &
+              Elegant Living Spaces
+            </h1>
+
+            <p
+              className="
+                mt-6
+                text-muted-foreground
+                leading-8
+                text-lg
+              "
+            >
+              At Comforty, we believe
+              furniture should be more than
+              functional — it should bring
+              comfort, elegance, and timeless
+              beauty into your home. Our
+              premium collections are crafted
+              for modern lifestyles.
+            </p>
+
+            {/* Features */}
+            <div className="grid sm:grid-cols-2 gap-5 mt-10">
+              {features.map(
+                (
+                  item,
+                  index
+                ) => {
+                  const Icon =
+                    item.icon;
+
+                  return (
+                    <div
+                      key={index}
+                      className="
+                        rounded-2xl
+                        border border-white/10
+                        bg-background/60
+                        backdrop-blur-xl
+                        p-5
+                      "
+                    >
+                      <div
+                        className="
+                          flex h-12 w-12
+                          items-center justify-center
+                          rounded-xl
+                          bg-[#029fae]/10
+                          text-[#029fae]
+                          mb-4
+                        "
+                      >
+                        <Icon className="h-6 w-6" />
+                      </div>
+
+                      <h3 className="font-semibold text-foreground">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {item.desc}
+                      </p>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+
+            {/* FAQ */}
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold mb-6 text-foreground">
+                Frequently Asked Questions
+              </h2>
+
+              <div className="space-y-4">
+                {faqs.map(
+                  (
+                    faq,
+                    index
+                  ) => (
+                    <div
+                      key={index}
+                      className="
+                        overflow-hidden
+                        rounded-2xl
+                        border border-white/10
+                        bg-background/60
+                        backdrop-blur-xl
+                      "
+                    >
+                      <button
+                        className="
+                          flex w-full
+                          items-center justify-between
+                          p-5 text-left
+                        "
+                        onClick={() =>
+                          setOpenIndex(
+                            openIndex ===
+                              index
+                              ? null
+                              : index
+                          )
+                        }
+                      >
+                        <h3 className="font-medium text-foreground">
+                          {
+                            faq.question
+                          }
+                        </h3>
+
+                        <ChevronDown
+                          className={`
+                            h-5 w-5
+                            transition-transform
+                            duration-300
+                            ${
+                              openIndex ===
+                              index
+                                ? 'rotate-180'
+                                : ''
+                            }
+                          `}
+                        />
+                      </button>
+
+                      <div
+                        className={`
+                          overflow-hidden
+                          transition-all
+                          duration-300
+                          ${
+                            openIndex ===
+                            index
+                              ? 'max-h-40 px-5 pb-5'
+                              : 'max-h-0'
+                          }
+                        `}
+                      >
+                        <p className="text-muted-foreground leading-7">
+                          {
+                            faq.answer
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
