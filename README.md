@@ -1,6 +1,8 @@
 # 🪑 Comfort Furniture
 
-A modern and responsive **Furniture E-Commerce Web Application** where users can browse premium furniture collections, authenticate securely using Google, explore featured and newly added products, and manage their shopping cart seamlessly.
+A modern, responsive **Furniture E-Commerce Web Application** built with Next.js. Users can explore premium furniture, manage cart items, submit reviews, and experience secure authentication with a clean and modern UI.
+
+---
 
 ## 🌐 Live Demo
 
@@ -8,97 +10,99 @@ A modern and responsive **Furniture E-Commerce Web Application** where users can
 
 ---
 
+## 📸 Preview
+
+### 🏠 Home Page
+- Hero section with modern UI
+- Featured products showcase
+- Recently added products
+- Brand/logo marquee slider
+- Client testimonials section
+
+### 🛒 E-Commerce Experience
+- Product listing page
+- Add to cart functionality
+- Cart management table
+- User & Admin dashboards
+
+---
+
 ## ✨ Features
 
 ### 🔐 Authentication
 - User Login & Registration
-- Secure **Google Authentication**
-- Protected User Experience
-
-### 🛋️ Product Showcase
-- Browse **Featured Products**
-- Explore **Recently Added Products**
-- Responsive Product Cards
-- Detailed Product View
-
-### 🛒 Shopping Cart
-- Add products to cart
-- Manage selected items easily
-- Smooth shopping experience
-
-### 🎨 Modern UI/UX
-- Fully Responsive Design
-- Clean & Elegant Furniture Layout
-- Optimized for Desktop, Tablet & Mobile
+- Secure authentication system
+- Role-based access (Admin / User)
+- Protected routes
+- User profile dashboard
 
 ---
 
-## 📸 Website Preview
+### 🛋️ Product System
+- Browse furniture products
+- Featured products section
+- Recently added products
+- Admin can create furniture
+- Image upload support
 
-### Home Page
-- Beautiful Hero Section
-- Featured Products Collection
-- Recently Added Products
-- Modern Furniture Showcase
+---
+
+### 🛒 Cart System
+- Add products to cart
+- View cart in table format
+- Redux Toolkit state management
+- Smooth shopping experience
+
+---
+
+### ⭐ Review System
+- Add client reviews
+- Display testimonials
+- Admin view of all reviews
+- Reviewer profile + profession
+
+---
+
+### 👨‍💼 Admin Panel
+- Manage users
+- Manage furniture products
+- Manage reviews
+- Role-based dashboard access
+
+---
+
+### 🎨 UI/UX
+- Fully responsive design (Mobile / Tablet / Desktop)
+- Modern UI with Tailwind CSS
+- ShadCN UI components
+- Smooth hover animations
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Next.js**
-- **React.js**
-- **TypeScript**
-- **Tailwind CSS**
+- Next.js (App Router)
+- React.js
+- TypeScript
+- Tailwind CSS
+- ShadCN UI
+
+### State Management
+- Redux Toolkit
+
+### Forms & Validation
+- React Hook Form
+- Zod
 
 ### Authentication
-- **JWT**
+- JWT-based authentication
 
 ### Deployment
-- **Vercel**
+- Vercel
 
 ---
 
-## 🚀 Installation & Setup
-
-
-Go to the project folder:
-
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Open:
-
-```bash
-http://localhost:3000
-```
-
-
----
-
-## 📂 Project Structure
-
-```bash
-src/
-│── app/
-│── components/
-│── pages/
-│── hooks/
-│── services/
-│── firebase/
-│── types/
-│── utils/
-```
 
 ---
 
@@ -161,9 +165,5 @@ This project is licensed under the **MIT License**.
 
 Developed with ❤️ by **Sadik Moktadir Mithun**
 
-### Connect With Me
-- GitHub: [https://github.com/your-username](https://github.com/SadikMuktadir)
-
----
 
 ⭐ If you like this project, don't forget to **star the repository**!
